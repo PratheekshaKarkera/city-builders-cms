@@ -1,0 +1,6 @@
+# Optionally run lint and build if desired
+npm run build
+npm run semgrep
+npm run trivy
+npm run gitleaks
+npm run cspell
