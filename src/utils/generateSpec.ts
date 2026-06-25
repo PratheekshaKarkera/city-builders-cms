@@ -4,7 +4,7 @@ import type { PayloadRequest } from 'payload'
 export async function getCustomSpec(req: PayloadRequest) {
   const spec = (await generateV30Spec(req, {
     openapiVersion: '3.0',
-    authEndpoint: '/api/users/login',
+    authEndpoint: '/users/login',
     metadata: {
       title: 'City Builders API',
       version: '1.0.0',
@@ -224,6 +224,39 @@ export async function getCustomSpec(req: PayloadRequest) {
       },
     }
   }
+
+  // Remove internal Payload paths
+  const internalPaths = [
+    '/api/audit-logs',
+    '/api/audit-logs/{id}',
+    '/api/payload-kv',
+    '/api/payload-kv/{id}',
+    '/api/payload-locked-documents',
+    '/api/payload-locked-documents/{id}',
+    '/api/payload-migrations',
+    '/api/payload-migrations/{id}',
+    '/api/payload-preferences',
+    '/api/payload-preferences/{id}',
+    '/api/server-logs',
+    '/api/server-logs/{id}',
+    '/api//api/users/login',
+    '/api/categories',
+    '/api/categories/{id}',
+    '/api/projects',
+    '/api/projects/{id}',
+    '/api/news',
+    '/api/news/{id}',
+    '/api/faq',
+    '/api/faq/{id}',
+    '/api/users',
+    '/api/users/{id}',
+    '/api/enquiry',
+    '/api/enquiry/{id}',
+    '/api/media',
+    '/api/media/{id}'
+  ]
+
+  internalPaths.forEach(p => delete spec.paths[p])
 
   const clientTags = new Set<string>()
   const adminTags = new Set<string>()

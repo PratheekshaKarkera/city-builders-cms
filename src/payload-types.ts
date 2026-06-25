@@ -457,7 +457,7 @@ export interface Project {
    */
   type: string;
   location: string;
-  status: 'upcoming' | 'ongoing' | 'completed';
+  status: 'upcoming' | 'ongoing' | 'completed' | 'ready-to-move';
   image: string | Media;
   /**
    * Add dynamic details specific to this project.
@@ -475,8 +475,132 @@ export interface Project {
         id?: string | null;
       }[]
     | null;
+  /**
+   * Detailed description of the project.
+   */
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * URL to a promotional video (e.g., YouTube, Vimeo).
+   */
+  videoUrl?: string | null;
+  /**
+   * Google Maps embed URL.
+   */
+  mapLocationUrl?: string | null;
+  /**
+   * Upload the primary project brochure (PDF) for the Download Brochure button.
+   */
+  brochure?: (string | null) | Media;
+  /**
+   * Images for the project gallery slider.
+   */
+  gallery?:
+    | {
+        image: string | Media;
+        id?: string | null;
+      }[]
+    | null;
+  amenities?:
+    | {
+        name: string;
+        /**
+         * Enter the Lucide icon name (e.g., wifi, car, home). Leave blank to use a custom image.
+         */
+        lucideIcon?: string | null;
+        /**
+         * Upload a custom SVG or image if not using a Lucide icon.
+         */
+        customIcon?: (string | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Structural and material specifications for the project.
+   */
+  specifications?:
+    | {
+        /**
+         * e.g., Flooring, Electrical, Kitchen
+         */
+        title: string;
+        /**
+         * Add multiple bullet points for this specification.
+         */
+        excerpt?:
+          | {
+              point: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  floorPlans?:
+    | {
+        title?: string | null;
+        image: string | Media;
+        /**
+         * Optional text to display under the floor plan image.
+         */
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  landmarks?:
+    | {
+        name: string;
+        /**
+         * e.g., 2 km or 10 mins
+         */
+        distance: string;
+        id?: string | null;
+      }[]
+    | null;
+  constructionProgress?:
+    | {
+        date: string;
+        description?: string | null;
+        image: string | Media;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Upload multiple certificates, bank approvals, or project documents.
+   */
+  certificates?:
+    | {
+        /**
+         * e.g., RERA Certificate, SBI Home Loan Approved, Brochure
+         */
+        title: string;
+        /**
+         * Optional logo (e.g., Bank logo or RERA logo).
+         */
+        icon?: (string | null) | Media;
+        /**
+         * The actual PDF document for the customer to download.
+         */
+        document?: (string | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
+  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -863,8 +987,70 @@ export interface ProjectsSelect<T extends boolean = true> {
         value?: T;
         id?: T;
       };
+  description?: T;
+  videoUrl?: T;
+  mapLocationUrl?: T;
+  brochure?: T;
+  gallery?:
+    | T
+    | {
+        image?: T;
+        id?: T;
+      };
+  amenities?:
+    | T
+    | {
+        name?: T;
+        lucideIcon?: T;
+        customIcon?: T;
+        id?: T;
+      };
+  specifications?:
+    | T
+    | {
+        title?: T;
+        excerpt?:
+          | T
+          | {
+              point?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  floorPlans?:
+    | T
+    | {
+        title?: T;
+        image?: T;
+        description?: T;
+        id?: T;
+      };
+  landmarks?:
+    | T
+    | {
+        name?: T;
+        distance?: T;
+        id?: T;
+      };
+  constructionProgress?:
+    | T
+    | {
+        date?: T;
+        description?: T;
+        image?: T;
+        id?: T;
+      };
+  certificates?:
+    | T
+    | {
+        title?: T;
+        icon?: T;
+        document?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
+  _status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
