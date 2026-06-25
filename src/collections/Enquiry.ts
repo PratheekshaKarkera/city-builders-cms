@@ -36,22 +36,22 @@ export const Enquiry: CollectionConfig = {
             general_enquiry: {
               clientTitle: 'Thank You for Your Enquiry!',
               adminTitle: 'New Enquiry Received',
-              subject: 'New Enquiry Received - MCC Bank',
+              subject: 'New Enquiry Received - City Builders',
             },
             loan_enquiry: {
               clientTitle: 'Thank You for Your Loan Enquiry!',
               adminTitle: 'New Loan Enquiry Received',
-              subject: 'New Loan Enquiry Received - MCC Bank',
+              subject: 'New Loan Enquiry Received - City Builders',
             },
             deposite_enquiry: {
               clientTitle: 'Thank You for Your Deposit Enquiry!',
               adminTitle: 'New Deposit Enquiry Received',
-              subject: 'New Deposit Enquiry Received - MCC Bank',
+              subject: 'New Deposit Enquiry Received - City Builders',
             },
             nre_enquiry: {
               clientTitle: 'Thank You for Your NRE Enquiry!',
               adminTitle: 'New NRE Enquiry Received',
-              subject: 'New NRE Enquiry Received - MCC Bank',
+              subject: 'New NRE Enquiry Received - City Builders',
             }
           }
           const { clientTitle, adminTitle, subject } =
@@ -61,10 +61,10 @@ export const Enquiry: CollectionConfig = {
           req.payload.sendEmail({
             to: doc.email,
             bcc: process.env.BCC_EMAIL,
-            subject: 'Thank you for your enquiry - MCC Bank',
+            subject: 'Thank you for your enquiry - City Builders',
             html: getEmailTemplate({
               title: clientTitle,
-              content: `Dear ${doc.name},<br><br>Thank you for reaching out to MCC Bank. We have received your message and our team will get back to you as soon as possible.<br><br>Best Regards,<br>Team MCC Bank`,
+              content: `Dear ${doc.name},<br><br>Thank you for reaching out to City Builders. We have received your message and our team will get back to you as soon as possible.<br><br>Best Regards,<br>Team City Builders`,
             }),
           })
 

@@ -37,7 +37,7 @@ export const getEmailTemplate = ({
         <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:600px; margin: 40px auto; background-color: #ffffff; border: 1px solid #E2E8F0; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0, 84, 166, 0.08);">
           <tr>
             <td align="center" style="padding: 40px 0; background-color: #ffffff; border-bottom: 4px solid #0054A6;">
-              <img src="${process.env.LOGO_URL || 'https://mcc-bank-website-dev.mccbank.workers.dev/logo/mcc-logo-2.jpg'}" alt="MCC Bank" width="200" style="display: block; margin: 0 auto;" />
+              <img src="${process.env.LOGO_URL || 'https://city-builders.com/logo/logo-new.png'}" alt="City Builders" width="200" style="display: block; margin: 0 auto;" />
             </td>
           </tr>
           <tr>
@@ -52,7 +52,7 @@ export const getEmailTemplate = ({
           <tr>
             <td style="padding: 30px; background-color: #F9FBFF; border-top: 1px solid #E2E8F0; text-align: center;">
               <p style="color: #666666; font-size: 12px; margin: 0;">
-                &copy; 2026 MCC Bank. All rights reserved.
+                &copy; 2026 City Builders. All rights reserved.
               </p>
               <p style="color: #999999; font-size: 11px; margin-top: 5px;">
                 Trust Built Over Generations
@@ -95,7 +95,7 @@ export const getAdminEmailTemplate = ({
         <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:600px; margin: 40px auto; background-color: #ffffff; border: 1px solid #E2E8F0; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0, 84, 166, 0.08);">
           <tr>
             <td align="center" style="padding: 40px 0; background-color: #ffffff; border-bottom: 4px solid #0054A6;">
-              <img src="${process.env.LOGO_URL || 'https://mcc-bank-website-dev.mccbank.workers.dev/logo/mcc-logo-2.jpg'}" alt="MCC Bank" width="200" style="display: block; margin: 0 auto;" />
+              <img src="${process.env.LOGO_URL || 'https://city-builders.com/logo/logo-new.png'}" alt="City Builders" width="200" style="display: block; margin: 0 auto;" />
             </td>
           </tr>
           <tr>
@@ -134,7 +134,7 @@ export const getAdminEmailTemplate = ({
           <tr>
             <td style="padding: 30px; background-color: #F9FBFF; border-top: 1px solid #E2E8F0; text-align: center;">
               <p style="color: #666666; font-size: 12px; margin: 0;">
-                &copy; 2026 MCC Bank. All rights reserved.
+                &copy; 2026 City Builders. All rights reserved.
               </p>
               <p style="color: #999999; font-size: 11px; margin-top: 5px;">
                 Trust Built Over Generations

@@ -245,16 +245,7 @@ export const News: CollectionConfig = {
         beforeValidate: [populateSeoDescription],
       },
     },
-    {
-      name: 'keywords',
-      type: 'relationship',
-      relationTo: 'keywords',
-      hasMany: true,
-      required: true,
-      admin: {
-        description: 'Select existing keywords or create new ones.',
-      },
-    },
+
     {
       name: 'ogImage',
       type: 'upload',

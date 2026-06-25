@@ -38,7 +38,7 @@ export const Users: CollectionConfig = {
                 <tr>
                   <td align="center" style="padding: 40px 0; background-color: #ffffff; border-bottom: 4px solid #004792;">
                     <div style="margin-bottom: 10px;">
-                      <img src="https://dev.mcc-bank-website.pages.dev/logo/mcc-logo-trans.svg" alt="MCC Bank" width="220" style="display: block; margin: 0 auto; max-width: 100%; height: auto;" />
+                      <img src="${serverURL}/logo/logo-new.png" alt="City Builders" width="220" style="display: block; margin: 0 auto; max-width: 100%; height: auto;" />
                     </div>
                     <div style="font-size: 12px; color: #666666; margin-top: 5px; text-transform: uppercase; letter-spacing: 2px;">Trust Built Over Generations</div>
                   </td>
@@ -47,7 +47,7 @@ export const Users: CollectionConfig = {
                   <td style="padding: 40px 30px; line-height: 1.6;">
                     <h2 style="color: #1A1A1A; font-size: 24px; font-weight: 700; margin-top: 0; text-align: center;">Password Reset Request</h2>
                     <p style="color: #4A4A4A; font-size: 16px; margin-bottom: 30px; text-align: center;">
-                      You are receiving this because you (or someone else) have requested the reset of the password for your MCC Bank account.
+                      You are receiving this because you (or someone else) have requested the reset of the password for your City Builders account.
                     </p>
                     <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
                       <tr>
@@ -66,7 +66,7 @@ export const Users: CollectionConfig = {
                 <tr>
                   <td style="padding: 30px; background-color: #F9FBF8; border-top: 1px solid #E0EADD; text-align: center;">
                     <p style="color: #666666; font-size: 12px; margin: 0;">
-                      &copy; 2026 MCC Bank. All rights reserved.
+                      &copy; 2026 City Builders. All rights reserved.
                     </p>
                     <p style="color: #999999; font-size: 11px; margin-top: 5px;">
                       Trust Built Over Generations
@@ -79,7 +79,7 @@ export const Users: CollectionConfig = {
         `
 
       },
-      generateEmailSubject: () => 'Reset your MCC Bank Admin Password',
+      generateEmailSubject: () => 'Reset your City Builders Admin Password',
     },
   },
   fields: [

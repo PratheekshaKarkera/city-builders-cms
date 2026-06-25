@@ -12,12 +12,12 @@ export const seedEnquirySettings = async (payload: Payload) => {
       await payload.updateGlobal({
         slug: 'enquiry-settings',
         data: {
-          email: 'ho@mcc.bank.in',
+          email: 'info@citybuilders.com',
           countryCode: '91',
           phone: '1234567890',
           telephoneNumber: '1800 123 2966',
           address: {
-            line1: '14-6-685, 686, MCC Bank Building',
+            line1: '14-6-685, 686, City Builders Building',
             line2: 'St. Aloysius College Road',
             area: 'Hampankatta',
             city: 'Mangalore',
@@ -27,22 +27,22 @@ export const seedEnquirySettings = async (payload: Payload) => {
           links: [
             {
               platformName: 'Facebook',
-              url: 'https://facebook.com/mccbank',
+              url: 'https://facebook.com/citybuilders',
               iconName: 'facebook',
             },
             {
               platformName: 'Instagram',
-              url: 'https://instagram.com/mccbank',
+              url: 'https://instagram.com/citybuilders',
               iconName: 'instagram',
             },
             {
               platformName: 'LinkedIn',
-              url: 'https://linkedin.com/company/mccbank',
+              url: 'https://linkedin.com/company/citybuilders',
               iconName: 'linkedin',
             },
             {
               platformName: 'YouTube',
-              url: 'https://youtube.com/mccbank',
+              url: 'https://youtube.com/citybuilders',
               iconName: 'youtube',
             },
           ],

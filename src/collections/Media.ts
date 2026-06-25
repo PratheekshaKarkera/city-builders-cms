@@ -128,6 +128,7 @@ export const Media: CollectionConfig = {
                   'testimonials': 'testimonials',
                   'careers': 'careers',
                   'offers': 'offers',
+                  'projects': 'projects',
                   
                   // About Us (Collections)
                   'about-us-senior-management': 'aboutUs',
@@ -167,15 +168,15 @@ export const Media: CollectionConfig = {
               }
             }
 
-            // Set the S3 prefix: mcc/public/<Category>
+            // Set the S3 prefix: city-builders/public/<Category>
             const category = data.category || 'media'
-            data.prefix = `mcc-website/public/${category.toLowerCase()}`
+            data.prefix = `city-builders/public/${category.toLowerCase()}`
           }
         } catch (error) {
           console.error('Media prefix hook error:', error)
           // Fallback to a safe prefix if something goes wrong
           if (!data.prefix) {
-            data.prefix = 'mcc-website/public/media'
+            data.prefix = 'city-builders/public/media'
           }
         }
 
@@ -229,6 +230,7 @@ export const Media: CollectionConfig = {
         { label: 'testimonials', value: 'testimonials' },
         { label: 'news', value: 'news' },
         { label: 'media', value: 'media' },
+        { label: 'projects', value: 'projects' },
         { label:'aboutUs',value:'aboutUs'},
         { label: 'hero', value: 'hero' },
         { label:'deposits',value:'deposits'},
