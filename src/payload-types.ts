@@ -453,12 +453,45 @@ export interface Project {
   name: string;
   slug?: string | null;
   /**
-   * e.g., Residential, Commercial
+   * Select the property type
    */
-  type: string;
+  type: 'Apartment' | 'Villas' | 'Plots' | 'Commercial';
   location: string;
+  /**
+   * Add nearby landmarks and their distance from the project.
+   */
+  landmarks?:
+    | {
+        name: string;
+        /**
+         * e.g., 2 km or 10 mins
+         */
+        distance: string;
+        id?: string | null;
+      }[]
+    | null;
   status: 'upcoming' | 'ongoing' | 'completed' | 'ready-to-move';
+  /**
+   * Primary thumbnail image for the project listing card.
+   */
   image: string | Media;
+  /**
+   * Multiple images for the main hero slider at the top of the project details page.
+   */
+  heroImages?:
+    | {
+        image: string | Media;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * e.g., 2.5 Cr
+   */
+  startingAt?: string | null;
+  /**
+   * e.g., Immediate, Dec 2026
+   */
+  possession?: string | null;
   /**
    * Add dynamic details specific to this project.
    */
@@ -475,6 +508,10 @@ export interface Project {
         id?: string | null;
       }[]
     | null;
+  /**
+   * A brief summary of the project to display on listing cards.
+   */
+  shortDescription?: string | null;
   /**
    * Detailed description of the project.
    */
@@ -560,17 +597,7 @@ export interface Project {
         id?: string | null;
       }[]
     | null;
-  landmarks?:
-    | {
-        name: string;
-        /**
-         * e.g., 2 km or 10 mins
-         */
-        distance: string;
-        id?: string | null;
-      }[]
-    | null;
-  constructionProgress?:
+  siteProgress?:
     | {
         date: string;
         description?: string | null;
@@ -595,6 +622,16 @@ export interface Project {
          * The actual PDF document for the customer to download.
          */
         document?: (string | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Add FAQs specific to this project.
+   */
+  faqs?:
+    | {
+        question: string;
+        answer: string;
         id?: string | null;
       }[]
     | null;
@@ -978,8 +1015,23 @@ export interface ProjectsSelect<T extends boolean = true> {
   slug?: T;
   type?: T;
   location?: T;
+  landmarks?:
+    | T
+    | {
+        name?: T;
+        distance?: T;
+        id?: T;
+      };
   status?: T;
   image?: T;
+  heroImages?:
+    | T
+    | {
+        image?: T;
+        id?: T;
+      };
+  startingAt?: T;
+  possession?: T;
   details?:
     | T
     | {
@@ -987,6 +1039,7 @@ export interface ProjectsSelect<T extends boolean = true> {
         value?: T;
         id?: T;
       };
+  shortDescription?: T;
   description?: T;
   videoUrl?: T;
   mapLocationUrl?: T;
@@ -1025,14 +1078,7 @@ export interface ProjectsSelect<T extends boolean = true> {
         description?: T;
         id?: T;
       };
-  landmarks?:
-    | T
-    | {
-        name?: T;
-        distance?: T;
-        id?: T;
-      };
-  constructionProgress?:
+  siteProgress?:
     | T
     | {
         date?: T;
@@ -1046,6 +1092,13 @@ export interface ProjectsSelect<T extends boolean = true> {
         title?: T;
         icon?: T;
         document?: T;
+        id?: T;
+      };
+  faqs?:
+    | T
+    | {
+        question?: T;
+        answer?: T;
         id?: T;
       };
   updatedAt?: T;

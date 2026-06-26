@@ -12,7 +12,7 @@ export const Projects: CollectionConfig = {
   slug: 'projects',
   admin: {
     useAsTitle: 'name',
-    defaultColumns: ['name', 'type', 'status', 'location', 'updatedAt'],
+    defaultColumns: ['name', 'type', 'status', 'startingAt', 'location'],
   },
   versions: {
     drafts: true,
@@ -37,7 +37,7 @@ export const Projects: CollectionConfig = {
       handler: async (req) => {
         const { payload, user } = req
         const isAdminUser = user?.role === 'ADMIN' || user?.role === 'SUPERADMIN'
-        const where = isAdminUser ? {} : {
+        const where = isAdminUser ? undefined : {
           _status: {
             equals: 'published',
           },
@@ -69,12 +69,14 @@ export const Projects: CollectionConfig = {
         }
 
         const isAdminUser = user?.role === 'ADMIN' || user?.role === 'SUPERADMIN'
+        const statusQuery = isAdminUser ? {} : { _status: { equals: 'published' } }
+        
         const where = {
           slug: {
             equals: slug,
           },
-          ...(isAdminUser ? {} : { _status: { equals: 'published' } }),
-        }
+          ...statusQuery,
+        } as any; // Cast to any to avoid strict Payload Where type errors on spread
 
         try {
           const result = await payload.find({
@@ -125,16 +127,42 @@ export const Projects: CollectionConfig = {
     },
     {
       name: 'type',
-      type: 'text',
+      type: 'select',
       required: true,
+      options: [
+        { label: 'Apartment', value: 'Apartment' },
+        { label: 'Villas', value: 'Villas' },
+        { label: 'Plots', value: 'Plots' },
+        { label: 'Commercial', value: 'Commercial' },
+      ],
       admin: {
-        description: 'e.g., Residential, Commercial',
+        description: 'Select the property type',
       },
     },
     {
       name: 'location',
       type: 'text',
       required: true,
+    },
+    {
+      name: 'landmarks',
+      type: 'array',
+      fields: [
+        {
+          name: 'name',
+          type: 'text',
+          required: true,
+        },
+        {
+          name: 'distance',
+          type: 'text',
+          required: true,
+          admin: { description: 'e.g., 2 km or 10 mins' },
+        },
+      ],
+      admin: {
+        description: 'Add nearby landmarks and their distance from the project.',
+      },
     },
     {
       name: 'status',
@@ -153,6 +181,39 @@ export const Projects: CollectionConfig = {
       type: 'upload',
       relationTo: 'media',
       required: true,
+      admin: {
+        description: 'Primary thumbnail image for the project listing card.',
+      },
+    },
+    {
+      name: 'heroImages',
+      type: 'array',
+      label: 'Hero Slider Images',
+      fields: [
+        {
+          name: 'image',
+          type: 'upload',
+          relationTo: 'media',
+          required: true,
+        },
+      ],
+      admin: {
+        description: 'Multiple images for the main hero slider at the top of the project details page.',
+      },
+    },
+    {
+      name: 'startingAt',
+      type: 'text',
+      admin: {
+        description: 'e.g., 2.5 Cr',
+      },
+    },
+    {
+      name: 'possession',
+      type: 'text',
+      admin: {
+        description: 'e.g., Immediate, Dec 2026',
+      },
     },
     {
       name: 'details',
@@ -182,6 +243,13 @@ export const Projects: CollectionConfig = {
       ],
       admin: {
         description: 'Add dynamic details specific to this project.',
+      },
+    },
+    {
+      name: 'shortDescription',
+      type: 'textarea',
+      admin: {
+        description: 'A brief summary of the project to display on listing cards.',
       },
     },
     {
@@ -317,26 +385,11 @@ export const Projects: CollectionConfig = {
         },
       ],
     },
+
     {
-      name: 'landmarks',
+      name: 'siteProgress',
       type: 'array',
-      fields: [
-        {
-          name: 'name',
-          type: 'text',
-          required: true,
-        },
-        {
-          name: 'distance',
-          type: 'text',
-          required: true,
-          admin: { description: 'e.g., 2 km or 10 mins' },
-        },
-      ],
-    },
-    {
-      name: 'constructionProgress',
-      type: 'array',
+      label: 'Site Progress',
       fields: [
         {
           name: 'date',
@@ -387,6 +440,26 @@ export const Projects: CollectionConfig = {
       ],
       admin: {
         description: 'Upload multiple certificates, bank approvals, or project documents.',
+      },
+    },
+    {
+      name: 'faqs',
+      type: 'array',
+      label: 'Frequently Asked Questions',
+      fields: [
+        {
+          name: 'question',
+          type: 'text',
+          required: true,
+        },
+        {
+          name: 'answer',
+          type: 'textarea',
+          required: true,
+        },
+      ],
+      admin: {
+        description: 'Add FAQs specific to this project.',
       },
     },
   ],
