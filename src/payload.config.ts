@@ -23,10 +23,7 @@ import { InteriorPage } from './globals/InteriorPage'
 // Seed imports (removed bank-specific seeds)
 // import { seedFaqs, seedEnquirySettings } from './utils/seed'
 
-import { News } from './collections/News'
-import { NewsTags } from './collections/NewsCategory'
 import { getCustomSpec } from './utils/generateSpec'
-import { FAQ } from './collections/FAQ'
 import { Projects } from './collections/Projects'
 
 const filename = fileURLToPath(import.meta.url)
@@ -82,9 +79,6 @@ export default buildConfig({
     ServerLogs,
     Media,
     Enquiry,
-    News,
-    NewsTags,
-    FAQ,
     Projects,
   ],
 
@@ -171,9 +165,6 @@ export default buildConfig({
       collections: [
         'media',
         'enquiry',
-        'news',
-        'news-tags',
-        'faq',
         'projects',
       ],
       includeAuth: true,

@@ -71,9 +71,6 @@ export interface Config {
     'server-logs': ServerLog;
     media: Media;
     enquiry: Enquiry;
-    news: News;
-    categories: Category;
-    faq: Faq;
     projects: Project;
     'audit-logs': AuditLog;
     'payload-kv': PayloadKv;
@@ -87,9 +84,6 @@ export interface Config {
     'server-logs': ServerLogsSelect<false> | ServerLogsSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     enquiry: EnquirySelect<false> | EnquirySelect<true>;
-    news: NewsSelect<false> | NewsSelect<true>;
-    categories: CategoriesSelect<false> | CategoriesSelect<true>;
-    faq: FaqSelect<false> | FaqSelect<true>;
     projects: ProjectsSelect<false> | ProjectsSelect<true>;
     'audit-logs': AuditLogsSelect<false> | AuditLogsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
@@ -193,25 +187,7 @@ export interface ServerLog {
  */
 export interface Media {
   id: string;
-  category:
-    | 'testimonials'
-    | 'news'
-    | 'media'
-    | 'projects'
-    | 'aboutUs'
-    | 'hero'
-    | 'deposits'
-    | 'loans'
-    | 'bulletins'
-    | 'nreCorners'
-    | 'otherServices'
-    | 'digitalBanking'
-    | 'cyberSecurity'
-    | 'careers'
-    | 'resumes'
-    | 'salesNotice'
-    | 'employeeEngagement'
-    | 'auctions';
+  category: 'testimonials' | 'news' | 'media' | 'projects' | 'aboutUs' | 'hero' | 'careers' | 'resumes';
   /**
    * Provide a brief title of the image for accessibility and SEO purposes.
    */
@@ -319,130 +295,11 @@ export interface Enquiry {
   id: string;
   name: string;
   email: string;
-  type: 'general_enquiry' | 'loan_enquiry' | 'deposite_enquiry' | 'nre_enquiry';
+  type: 'general_enquiry' | 'interior_consultation' | 'site_visit' | 'brochure_request';
   countryCode: string;
   phone: string;
   date: string;
   message: string;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "news".
- */
-export interface News {
-  id: string;
-  status: 'draft' | 'published';
-  /**
-   * Maximum 100 characters allowed.
-   */
-  title: string;
-  /**
-   * Maximum 180 characters allowed.
-   */
-  shortDescription: string;
-  slug?: string | null;
-  createdAt: string;
-  /**
-   * 16:9 aspect ratio recommended.
-   */
-  coverImage: string | Media;
-  /**
-   * Select or create news categories/tags.
-   */
-  category: (string | Category)[];
-  images?:
-    | {
-        /**
-         * 1:1 aspect ratio recommended.
-         */
-        image?: (string | null) | Media;
-        id?: string | null;
-      }[]
-    | null;
-  description: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  };
-  /**
-   * Summary highlights (Bullet points only). Optional.
-   */
-  summaryHighlights?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  seoTitle: string;
-  seoDescription: string;
-  /**
-   * Social sharing image (Open Graph). 1200 x 630 pixels recommended.
-   */
-  ogImage: string | Media;
-  updatedAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "categories".
- */
-export interface Category {
-  id: string;
-  title: string;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "faq".
- */
-export interface Faq {
-  id: string;
-  _order?: string | null;
-  title: string;
-  subTitle: string;
-  /**
-   * Maximum 151 characters allowed.
-   */
-  shortDescription: string;
-  pageHeading: string;
-  /**
-   * Maximum 191 characters allowed.
-   */
-  description: string;
-  faqCategories: {
-    category: string;
-    questions: {
-      question: string;
-      answer: string;
-      id?: string | null;
-    }[];
-    id?: string | null;
-  }[];
-  /**
-   * URL-friendly identifier (e.g., loans-and-advances)
-   */
-  slug: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -716,18 +573,6 @@ export interface PayloadLockedDocument {
         value: string | Enquiry;
       } | null)
     | ({
-        relationTo: 'news';
-        value: string | News;
-      } | null)
-    | ({
-        relationTo: 'categories';
-        value: string | Category;
-      } | null)
-    | ({
-        relationTo: 'faq';
-        value: string | Faq;
-      } | null)
-    | ({
         relationTo: 'projects';
         value: string | Project;
       } | null)
@@ -951,68 +796,6 @@ export interface EnquirySelect<T extends boolean = true> {
   phone?: T;
   date?: T;
   message?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "news_select".
- */
-export interface NewsSelect<T extends boolean = true> {
-  status?: T;
-  title?: T;
-  shortDescription?: T;
-  slug?: T;
-  createdAt?: T;
-  coverImage?: T;
-  category?: T;
-  images?:
-    | T
-    | {
-        image?: T;
-        id?: T;
-      };
-  description?: T;
-  summaryHighlights?: T;
-  seoTitle?: T;
-  seoDescription?: T;
-  ogImage?: T;
-  updatedAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "categories_select".
- */
-export interface CategoriesSelect<T extends boolean = true> {
-  title?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "faq_select".
- */
-export interface FaqSelect<T extends boolean = true> {
-  _order?: T;
-  title?: T;
-  subTitle?: T;
-  shortDescription?: T;
-  pageHeading?: T;
-  description?: T;
-  faqCategories?:
-    | T
-    | {
-        category?: T;
-        questions?:
-          | T
-          | {
-              question?: T;
-              answer?: T;
-              id?: T;
-            };
-        id?: T;
-      };
-  slug?: T;
   updatedAt?: T;
   createdAt?: T;
 }

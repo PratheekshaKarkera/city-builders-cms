@@ -38,20 +38,20 @@ export const Enquiry: CollectionConfig = {
               adminTitle: 'New Enquiry Received',
               subject: 'New Enquiry Received - City Builders',
             },
-            loan_enquiry: {
-              clientTitle: 'Thank You for Your Loan Enquiry!',
-              adminTitle: 'New Loan Enquiry Received',
-              subject: 'New Loan Enquiry Received - City Builders',
+            interior_consultation: {
+              clientTitle: 'Thank You for Your Interior Design Consultation Request!',
+              adminTitle: 'New Interior Consultation Request',
+              subject: 'New Interior Consultation Request - City Builders',
             },
-            deposite_enquiry: {
-              clientTitle: 'Thank You for Your Deposit Enquiry!',
-              adminTitle: 'New Deposit Enquiry Received',
-              subject: 'New Deposit Enquiry Received - City Builders',
+            site_visit: {
+              clientTitle: 'Thank You for Your Site Visit Request!',
+              adminTitle: 'New Site Visit Request',
+              subject: 'New Site Visit Request - City Builders',
             },
-            nre_enquiry: {
-              clientTitle: 'Thank You for Your NRE Enquiry!',
-              adminTitle: 'New NRE Enquiry Received',
-              subject: 'New NRE Enquiry Received - City Builders',
+            brochure_request: {
+              clientTitle: 'Thank You for Your Brochure Request!',
+              adminTitle: 'New Brochure Request',
+              subject: 'New Brochure Request - City Builders',
             }
           }
           const { clientTitle, adminTitle, subject } =
@@ -109,10 +109,10 @@ export const Enquiry: CollectionConfig = {
           required: true,
           options: [
             { label: 'General Enquiry', value: 'general_enquiry' },
-            { label: 'Loan Enquiry', value: 'loan_enquiry' },
-            { label: 'Deposit Enquiry', value: 'deposite_enquiry' },
-            { label: 'NRE Enquiry', value: 'nre_enquiry' },
-                    ],
+            { label: 'Interior Design Consultation', value: 'interior_consultation' },
+            { label: 'Project Site Visit', value: 'site_visit' },
+            { label: 'Brochure Request', value: 'brochure_request' },
+          ],
           admin: { readOnly: true },
         },
       ],

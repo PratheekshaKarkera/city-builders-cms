@@ -142,24 +142,8 @@ export const Media: CollectionConfig = {
                   'chairman-message': 'aboutUs',
                   'shareholder-corner': 'aboutUs',
                   
-                  // Home, Deposits, Loans
+                  // Home
                   'home': 'hero',
-                  'deposits': 'deposits',
-                  'loans': 'loans',
-
-                  'nre-corners': 'nreCorners',
-                  'rtgs-neft': 'otherServices',
-                  'services': 'otherServices',
-                  'service-types': 'otherServices',
-                  'service-charges': 'otherServices',
-                  'atm-services': 'digitalBanking',
-                  'mobile-banking': 'digitalBanking',
-                  'positive-pay-system': 'digitalBanking',
-                  'cyber-security-awareness': 'cyberSecurity',
-                  'employee-engagement': 'employeeEngagement',
-                  'sales-notice': 'salesNotice',
-                  'career-applications': 'resumes',
-                  'auctions': 'auctions',
                 }
                 
                 if (slugMap[collectionSlug]) {
@@ -231,20 +215,10 @@ export const Media: CollectionConfig = {
         { label: 'news', value: 'news' },
         { label: 'media', value: 'media' },
         { label: 'projects', value: 'projects' },
-        { label:'aboutUs',value:'aboutUs'},
+        { label: 'aboutUs', value: 'aboutUs'},
         { label: 'hero', value: 'hero' },
-        { label:'deposits',value:'deposits'},
-        { label: 'loans', value: 'loans' },
-        { label:'bulletins',value:'bulletins'},
-        { label: "nreCorners", value: "nreCorners" },
-        { label: 'otherServices', value: 'otherServices' },
-        { label: 'digitalBanking', value: 'digitalBanking' },
-        { label: 'cyberSecurity', value: 'cyberSecurity' },
         { label: 'careers', value: 'careers' },
         { label: 'resumes', value: 'resumes' },
-        { label: 'salesNotice', value: 'salesNotice' },
-        { label: 'employeeEngagement', value: 'employeeEngagement' },
-        { label: 'auctions', value: 'auctions' },
       ],
       defaultValue: 'media',
       required: true,
