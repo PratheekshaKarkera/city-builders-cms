@@ -145,6 +145,20 @@ export const Projects: CollectionConfig = {
       required: true,
     },
     {
+      name: 'officeAddress',
+      type: 'textarea',
+      admin: {
+        description: 'Office address to display on the project details page (e.g. City Real Estate Builders & Developers...)',
+      },
+    },
+    {
+      name: 'locationDescription',
+      type: 'textarea',
+      admin: {
+        description: 'Description of the location (e.g. This project is strategically situated...)',
+      },
+    },
+    {
       name: 'landmarks',
       type: 'array',
       fields: [
@@ -169,10 +183,9 @@ export const Projects: CollectionConfig = {
       type: 'select',
       required: true,
       options: [
-        { label: 'Upcoming', value: 'upcoming' },
         { label: 'Ongoing', value: 'ongoing' },
+        { label: 'Upcoming', value: 'upcoming' },
         { label: 'Completed', value: 'completed' },
-        { label: 'Ready to Move', value: 'ready-to-move' },
       ],
       defaultValue: 'ongoing',
     },

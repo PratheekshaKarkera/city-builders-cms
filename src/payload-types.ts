@@ -103,9 +103,11 @@ export interface Config {
   fallbackLocale: null;
   globals: {
     'enquiry-settings': EnquirySetting;
+    'interior-page': InteriorPage;
   };
   globalsSelect: {
     'enquiry-settings': EnquirySettingsSelect<false> | EnquirySettingsSelect<true>;
+    'interior-page': InteriorPageSelect<false> | InteriorPageSelect<true>;
   };
   locale: null;
   widgets: {
@@ -458,6 +460,14 @@ export interface Project {
   type: 'Apartment' | 'Villas' | 'Plots' | 'Commercial';
   location: string;
   /**
+   * Office address to display on the project details page (e.g. City Real Estate Builders & Developers...)
+   */
+  officeAddress?: string | null;
+  /**
+   * Description of the location (e.g. This project is strategically situated...)
+   */
+  locationDescription?: string | null;
+  /**
    * Add nearby landmarks and their distance from the project.
    */
   landmarks?:
@@ -470,7 +480,7 @@ export interface Project {
         id?: string | null;
       }[]
     | null;
-  status: 'upcoming' | 'ongoing' | 'completed' | 'ready-to-move';
+  status: 'ongoing' | 'upcoming' | 'completed';
   /**
    * Primary thumbnail image for the project listing card.
    */
@@ -1015,6 +1025,8 @@ export interface ProjectsSelect<T extends boolean = true> {
   slug?: T;
   type?: T;
   location?: T;
+  officeAddress?: T;
+  locationDescription?: T;
   landmarks?:
     | T
     | {
@@ -1192,6 +1204,88 @@ export interface EnquirySetting {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "interior-page".
+ */
+export interface InteriorPage {
+  id: string;
+  heroSlides?:
+    | {
+        /**
+         * Background image for the slide
+         */
+        image: string | Media;
+        /**
+         * e.g., PREMIUM COLLECTION
+         */
+        badge: string;
+        /**
+         * e.g., Elevate Your Everyday Living Experience
+         */
+        headline: string;
+        /**
+         * e.g., Bespoke living room designs that combine comfort...
+         */
+        subtext: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Text shown below the OUR INTERIOR MASTERPIECES heading
+   */
+  showcaseDescription: string;
+  showcaseProjects?:
+    | {
+        image: string | Media;
+        /**
+         * e.g., Living Room, Kitchen
+         */
+        category: string;
+        /**
+         * e.g., The Sky Penthouse Living Area
+         */
+        title: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Text shown below the EXCELLENCE IN EVERY DETAIL heading
+   */
+  whyChooseDescription: string;
+  whyChooseFeatures?:
+    | {
+        /**
+         * Lucide icon name (e.g. Layout, ShieldCheck, Compass, Clock, Package, HeartHandshake)
+         */
+        icon: string;
+        title: string;
+        description: string;
+        id?: string | null;
+      }[]
+    | null;
+  testimonials?:
+    | {
+        /**
+         * e.g., AS
+         */
+        initials: string;
+        /**
+         * e.g., ANJALI SHARMA
+         */
+        name: string;
+        /**
+         * e.g., SKY HIGH PENTHOUSE
+         */
+        project: string;
+        rating: number;
+        quote: string;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "enquiry-settings_select".
  */
 export interface EnquirySettingsSelect<T extends boolean = true> {
@@ -1216,6 +1310,52 @@ export interface EnquirySettingsSelect<T extends boolean = true> {
         platformName?: T;
         url?: T;
         iconName?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "interior-page_select".
+ */
+export interface InteriorPageSelect<T extends boolean = true> {
+  heroSlides?:
+    | T
+    | {
+        image?: T;
+        badge?: T;
+        headline?: T;
+        subtext?: T;
+        id?: T;
+      };
+  showcaseDescription?: T;
+  showcaseProjects?:
+    | T
+    | {
+        image?: T;
+        category?: T;
+        title?: T;
+        id?: T;
+      };
+  whyChooseDescription?: T;
+  whyChooseFeatures?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  testimonials?:
+    | T
+    | {
+        initials?: T;
+        name?: T;
+        project?: T;
+        rating?: T;
+        quote?: T;
         id?: T;
       };
   updatedAt?: T;

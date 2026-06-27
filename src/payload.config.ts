@@ -18,6 +18,7 @@ import { Media } from './collections/Media'
 import { ServerLogs } from './collections/ServerLogs'
 import { Enquiry } from './collections/Enquiry'
 import { EnquirySettings } from './globals/EnquirySettings'
+import { InteriorPage } from './globals/InteriorPage'
 
 // Seed imports (removed bank-specific seeds)
 // import { seedFaqs, seedEnquirySettings } from './utils/seed'
@@ -109,6 +110,7 @@ export default buildConfig({
   ].filter(Boolean),
   globals: [
     EnquirySettings,
+    InteriorPage,
   ],
   onInit: async (payload) => {
     payload.logger.info({ logLevel }, 'Payload initialization started')
